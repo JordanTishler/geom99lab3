@@ -4,12 +4,27 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>ArcGIS Maps SDK for JavaScript Tutorials: Change the basemap layer</title>
   <style>
-    html, body, #viewDiv {
+    html, body {
+        background-image: url(Flag_of_Canada_\(Pantone\).svg);
+        background-position: center;
+        padding:0;
+        margin: 0;
+        height: 100%;
+      width: 100%;
+    }
+        #viewDiv {
       padding: 0;
       margin: 0;
       height: 100%;
       width: 100%;
     }
+    .title {
+        background-color: rgba(255, 255, 255, 0.589);
+        }
+    .titles {
+
+        margin-left: 10px;
+        }
   </style>
 <!-- template used: https://developers.arcgis.com/javascript/latest/change-the-basemap-layer/ -->
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
@@ -74,6 +89,10 @@
   </script>
 </head>
 <body>
-  <div id="viewDiv"></div>
+    <div class="title">
+    <h1 class="titles">Map of Canada</h1>
+    <h2 class="titles">Click on any of the provinces to get their name</h2>
+    </div>
+    <div id="viewDiv"></div>
 </body>
 </html>
