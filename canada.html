@@ -1,0 +1,79 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ArcGIS Maps SDK for JavaScript Tutorials: Change the basemap layer</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+<!-- template used: https://developers.arcgis.com/javascript/latest/change-the-basemap-layer/ -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.25/"></script>
+
+  <script>
+
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/views/MapView",
+
+      "esri/widgets/BasemapToggle",
+      "esri/widgets/BasemapGallery",
+      "esri/layers/FeatureLayer"
+
+    ], function(esriConfig, Map, MapView, BasemapToggle, BasemapGallery,  FeatureLayer) {
+
+      esriConfig.apiKey = "AAPK9dd9b2d96eb148049d44eaaae65734dbzvckX6V7v-0qD99Pxx3cNQRtkKRhvrfE6P6cdreNXzdl04f9khOqMy0gcb-wDYG_";
+
+      const map = new Map({
+        basemap: "streets-night-vector"
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-106.3468, 56.1304],
+        zoom: 3
+      });
+      const basemapToggle = new BasemapToggle({
+        view: view,
+        nextBasemap: "arcgis-imagery"
+     });
+
+      view.ui.add(basemapToggle,"bottom-right");
+
+      const basemapGallery = new BasemapGallery({
+        view: view,
+        source: {
+          query: {
+            title: '"World Basemaps for Developers" AND owner:esri'
+          }
+        }
+      });
+      view.ui.add(basemapGallery, "bottom-left"); // Add to the view
+      
+
+      // Define a pop-up for Trailheads
+      const popupcanada = {
+        "title": "Canadian Provinces",
+        "content": "<b>Provice:</b> {PRENAME}"
+      }
+      const canada = new FeatureLayer({
+            url: "https://utility.arcgis.com/usrsvcs/servers/b06dbfdaa4384f82a3b3884025659171/rest/services/geom99wed/jotishleCanada/MapServer/0",
+            outFields: ["PRENAME"],
+            popupTemplate: popupcanada
+        });
+
+        map.add(canada);  
+    });
+  </script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
