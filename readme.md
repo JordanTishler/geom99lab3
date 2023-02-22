@@ -1,4 +1,5 @@
 Geom99lab3
+canada map representation bonus: https://jordantishler.github.io/geom99lab3/canada.html
 
 how to upload a file to arcgis online 
 
